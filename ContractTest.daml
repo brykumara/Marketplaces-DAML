@@ -1,0 +1,28 @@
+	daml 1.2 module ContractTest where
+	import Contract
+	import DataTypes
+	
+	setup : Scenario ()
+	setup = scenario do
+	-- 1. Create three parties: “Party 1” (the seller), “Party 2” (the buyer), “Party 3” (the insurer
+	party1 <- getParty "seller"
+	party2 <- getParty "buyer"
+	party3 <- getParty "insurer"
+	-- 2. Party1 issues new contract to Party2, selling 1 watch for GBP 100. Set owner to Party1
+	listWatch <- submit party1 do
+	    create Itemtosell with
+	        price = 100
+	        quantity = 1
+	        category = Fashion
+	        currency = GBP
+	        country = UK
+	        seller = party1
+	        buyer = party2
+	        insurer = party3
+	        item = "watch"
+	        owner = party1
+	-- 3. Let the owner of the watch transfer the ownership to party 2
+	sellWatch <- submit party1 do
+	    exercise listWatch Sell with
+	        newOwner = party2
+	return ()
