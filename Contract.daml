@@ -1,0 +1,38 @@
+	daml 1.2 module Contract where 
+	import DataTypes 
+	
+	-- 2. Create a contract template called "Itemtosell"
+	template Itemtosell
+	-- Specify Seller, Owner, Insurer, Type of item, Quantity, Price, Currency, and Country
+	    with 
+	        price: Int 
+	        quantity : Int 
+	        category : TypeofItem
+	        currency : Currency 
+	        country : Country
+	        seller : Party 
+	        buyer : Party
+	        insurer : Party 
+	        item : Text
+	        owner : Party
+	    where
+	        signatory seller -- 3.They propose actions such as agreeing to current price and have ownership transfered to them or to counter-offer
+	        observer insurer -- 3. Insurers are observers - they can only view trade, cannot issue or modify Itemtosell
+	        ensure(
+	            quantity > 0 && price > 0 -- 4. Condition that quantity and price must be larger than 0
+	            )
+	        controller owner can 
+	            ChangePrice:( -- 5. Modify price listed 
+	                    ContractId Itemtosell
+	                )
+	                with    
+	                    newPrice : Int
+	                do
+	                    create this with price = newPrice 
+	            Sell:( -- 5. Modifies the owner of the item listed in the contract where the controller is the “owner” of the item
+	                    ContractId Itemtosell
+	                )
+	                with 
+	                    newOwner : Party
+	                do 
+	                    create this with owner = newOwner            
