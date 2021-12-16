@@ -9,7 +9,7 @@ The task was to build a smart contract template on DAML for decentralized market
 6. Add a function ChangePrice to modify the price listed in the contract where the controller is the “owner” of the item.
 7. Add a function Sell that modifies the owner of the item listed in the contract where the controller is the “owner” of the item.
 
-In the scenario testing part, using the following structure
+In the scenario testing part, implement the follwoing:
 ``` setup = scenario do
 -- Add parties
 --Create contract
