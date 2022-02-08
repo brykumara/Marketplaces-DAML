@@ -1,5 +1,5 @@
 # Marketplaces-DAML
-This is a submission I made for the individual coursework of COMP0163 Blockchain Technologies at UCL during the first half of my master's degree in November 2021. \
+This is a submission I made for the individual coursework of COMP0163 Blockchain Technologies at UCL during the first half of my master's degree in November 2021. The final grade of this coursework was 69, a merit classification.\
 The task was to build a smart contract template on DAML for decentralized marketplaces. The following was requested:
 1. Create a new contract template called Itemtosell that the seller can use to advertise a certain object and transfer ownership to a buyer . 
 2. Add an insurer that can only view the information about the trade (without being able to issue or modify the contract Itemtosell).
